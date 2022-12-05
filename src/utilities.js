@@ -1,3 +1,9 @@
+import { firebase } from './firebase'
+import {
+  getDatabase,
+  ref,
+  update,
+} from "firebase/database"
 // Points for fingers
 const fingerJoints = {
   thumb: [0, 1, 2, 3, 4],
@@ -41,6 +47,14 @@ export const drawHand = (predictions, ctx) => {
       // Grab landmarks
       // const landmarks = prediction.landmarks;
       const keypoint = prediction.keypoints;
+
+      const db = getDatabase()
+
+
+      update(ref(db, `/playerMouse/one`), {
+        MouseX: 1050 - prediction.keypoints[9].x,
+        MouseY: prediction.keypoints[9].y + 400,
+      });
 
       // Loop through fingers
       for (let j = 0; j < Object.keys(fingerJoints).length; j++) {

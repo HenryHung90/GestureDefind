@@ -25,6 +25,12 @@ import splayed from "./splayed.png";
 import rock from './rock.png'
 ///////// NEW STUFF IMPORT
 
+import { firebase } from './firebase'
+import {
+  getDatabase,
+  ref,
+  update,
+} from "firebase/database"
 
 
 function App() {
