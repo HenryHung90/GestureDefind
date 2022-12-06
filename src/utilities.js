@@ -52,8 +52,8 @@ export const drawHand = (predictions, ctx) => {
 
 
       update(ref(db, `/playerMouse/one`), {
-        MouseX: 1050 - prediction.keypoints[9].x,
-        MouseY: prediction.keypoints[9].y + 400,
+        MouseX: 1050 - parseInt(prediction.keypoints[9].x),
+        MouseY: parseInt(prediction.keypoints[9].y) + 400,
       });
 
       // Loop through fingers
