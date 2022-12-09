@@ -39,7 +39,7 @@ const style = {
 };
 
 // Drawing function
-export const drawHand = (predictions, ctx) => {
+export const drawHand = (predictions, ctx, player) => {
   // Check if we have predictions
   if (predictions.length > 0) {
     // Loop through each prediction
@@ -50,7 +50,7 @@ export const drawHand = (predictions, ctx) => {
 
       //uploading keypoints
       const db = getDatabase()
-      update(ref(db, `/playerMouse/one`), {
+      update(ref(db, `/playerMouse/${player}`), {
         MouseX: 800 - parseInt(prediction.keypoints[9].x),
         MouseY: parseInt(prediction.keypoints[9].y) + 100,
       });

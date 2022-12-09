@@ -15,6 +15,7 @@
     "firebase": "^9.14.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^6.4.5",
     "react-scripts": "3.4.3",
     "react-webcam": "^5.2.0"
   },

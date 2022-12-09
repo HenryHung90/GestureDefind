@@ -14,7 +14,7 @@ import { drawHand } from "./utilities";
 //fingerpose import
 import * as fp from "fingerpose";
 import * as fpg from "fingerpose-gestures"
-import { fingerGunGesture,fistGesture } from "./customPose";
+import { fingerGunGesture, fistGesture } from "./customPose";
 
 //fingerpose image
 import victory from "./image/victory.png";
@@ -32,7 +32,7 @@ import {
 } from "firebase/database"
 
 
-const HandPose = ({player}) => {
+const HandPose = ({ player }) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -117,16 +117,16 @@ const HandPose = ({player}) => {
           const db = getDatabase()
 
           if (gesture.gestures[maxConfidence] !== undefined) {
-            if(gesture.gestures[maxConfidence].name === 'fist'){
+            if (gesture.gestures[maxConfidence].name === 'fist') {
               update(ref(db, `/playerMouse/${player}`), {
                 click: true
               });
-            }else if(gesture.gestures[maxConfidence].name === 'finger_gun'){
+            } else if (gesture.gestures[maxConfidence].name === 'finger_gun') {
               update(ref(db, `/playerMouse/${player}`), {
                 shooting: true
               });
             }
-            else{
+            else {
               update(ref(db, `/playerMouse/${player}`), {
                 click: false,
                 shooting: false,
@@ -164,7 +164,7 @@ const HandPose = ({player}) => {
 
       // Draw mesh
       const ctx = canvasRef.current.getContext("2d");
-      drawHand(hand, ctx);
+      drawHand(hand, ctx, player);
     }
   };
 
@@ -183,7 +183,7 @@ const HandPose = ({player}) => {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 1080,
+            width: 1440,
             height: 720,
           }}
         />
