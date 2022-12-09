@@ -14,7 +14,7 @@ import { drawHand } from "./utilities";
 //fingerpose import
 import * as fp from "fingerpose";
 import * as fpg from "fingerpose-gestures"
-import { fingerGunGesture, fistGesture } from "./customPose";
+import { fingerGunGesture, fistGesture,victoryGesture } from "./customPose";
 
 //fingerpose image
 import victory from "./image/victory.png";
@@ -92,7 +92,7 @@ const HandPose = ({ player }) => {
         const GE = new fp.GestureEstimator([
           //引入 fingerposeGesture 套件，
           //剪刀
-          fpg.Gestures.victoryGesture,
+          victoryGesture,
           //布
           fpg.Gestures.fingerSplayedGesture,
           //石頭
