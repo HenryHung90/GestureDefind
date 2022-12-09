@@ -24,19 +24,31 @@ fingerGunGesture.addDirection(fp.Finger.Index, fp.FingerDirection.DiagonalDownRi
 fingerGunGesture.addDirection(fp.Finger.Index, fp.FingerDirection.DiagonalDownLeft, 0.4);
 
 //other finger
-for (let finger of [fp.Finger.Middle,fp.Finger.Ring, fp.Finger.Pinky]) {
+for (let finger of [fp.Finger.Middle, fp.Finger.Ring, fp.Finger.Pinky]) {
     fingerGunGesture.addCurl(finger, fp.FingerCurl.FullCurl, 0.8);
 }
 
 //fist//
-for (let finger of [fp.Finger.Thumb,fp.Finger.Index,fp.Finger.Middle,fp.Finger.Ring, fp.Finger.Pinky]) {
+for (let finger of [fp.Finger.Thumb, fp.Finger.Index, fp.Finger.Middle, fp.Finger.Ring, fp.Finger.Pinky]) {
     fistGesture.addCurl(finger, fp.FingerCurl.FullCurl, 0.8);
 }
 
-//victory
+//victory//
+// Index
+victoryGesture.addCurl(fp.Finger.Index, fp.FingerCurl.NoCurl, 1.0)
+victoryGesture.addDirection(fp.Finger.Index, fp.FingerDirection.VerticalUp, 0.5);
+victoryGesture.addDirection(fp.Finger.Index, fp.FingerDirection.DiagonalUpRight, 0.5);
+victoryGesture.addDirection(fp.Finger.Index, fp.FingerDirection.DiagonalUpLeft, 0.5);
+
+// Midddle
+victoryGesture.addCurl(fp.Finger.Midddle, fp.FingerCurl.NoCurl, 1.0)
+victoryGesture.addDirection(fp.Finger.Midddle, fp.FingerDirection.VerticalUp, 0.5);
+victoryGesture.addDirection(fp.Finger.Midddle, fp.FingerDirection.DiagonalUpRight, 0.5);
+victoryGesture.addDirection(fp.Finger.Midddle, fp.FingerDirection.DiagonalUpLeft, 0.5);
+
+for (let finger of [fp.Finger.Thumb, fp.Finger.Ring, fp.Finger.Pinky]) {
+    fistGesture.addCurl(finger, fp.FingerCurl.FullCurl, 0.9);
+}
 
 
-
-
-
-export { fingerGunGesture , fistGesture }
+export { fingerGunGesture, fistGesture, victoryGesture }
