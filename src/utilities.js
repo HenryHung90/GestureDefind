@@ -1,4 +1,4 @@
-import { firebase } from './firebase'
+import { firebase } from './firebase/firebase'
 import {
   getDatabase,
   ref,
@@ -48,12 +48,11 @@ export const drawHand = (predictions, ctx) => {
       // const landmarks = prediction.landmarks;
       const keypoint = prediction.keypoints;
 
+      //uploading keypoints
       const db = getDatabase()
-
-
       update(ref(db, `/playerMouse/one`), {
-        MouseX: 1050 - parseInt(prediction.keypoints[9].x),
-        MouseY: parseInt(prediction.keypoints[9].y) + 400,
+        MouseX: 800 - parseInt(prediction.keypoints[9].x),
+        MouseY: parseInt(prediction.keypoints[9].y) + 100,
       });
 
       // Loop through fingers

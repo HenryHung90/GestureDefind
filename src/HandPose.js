@@ -1,10 +1,3 @@
-// 0. Install fingerpose npm install fingerpose
-// 1. Add Use State
-// 2. Import emojis and finger pose import * as fp from "fingerpose";
-// 3. Setup hook and emoji object
-// 4. Update detect function for gesture handling
-// 5. Add emoji display to the screen
-
 ///////// NEW STUFF ADDED USE STATE
 import React, { useRef, useState, useEffect } from "react";
 ///////// NEW STUFF ADDED USE STATE
@@ -18,14 +11,20 @@ import "./App.css";
 import { drawHand } from "./utilities";
 
 ///////// NEW STUFF IMPORTS
+//fingerpose import
 import * as fp from "fingerpose";
-import * as fpg from "fingerpose-gestures";
-import victory from "./victory.png";
-import splayed from "./splayed.png";
-import rock from './rock.png'
+import * as fpg from "fingerpose-gestures"
+import { fingerGunGesture,fistGesture } from "./customPose";
+
+//fingerpose image
+import victory from "./image/victory.png";
+import splayed from "./image/splayed.png";
+import rock from './image/rock.png';
+import fingerGun from './image/fingerGun.png'
 ///////// NEW STUFF IMPORT
 
-import { firebase } from './firebase'
+//firebase PlugIn
+import { firebase } from './firebase/firebase'
 import {
   getDatabase,
   ref,
@@ -33,14 +32,14 @@ import {
 } from "firebase/database"
 
 
-function App() {
+const HandPose = ({player}) => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
 
   ///////// NEW STUFF ADDED STATE HOOK
   const [emoji, setEmoji] = useState(null);
-  const images = { finger_splayed: splayed, victory: victory, fist: rock };
+  const images = { finger_splayed: splayed, victory: victory, fist: rock, finger_gun: fingerGun };
   ///////// NEW STUFF ADDED STATE HOOK
 
   const runHandpose = async () => {
@@ -82,7 +81,6 @@ function App() {
       // Make Detections
       const hand = await net.estimateHands(video);
       if (hand.length > 0) {
-        
         //使用keypoint3D
         const keypointsAry = Object.values(hand[0].keypoints3D)
 
@@ -98,21 +96,45 @@ function App() {
           //布
           fpg.Gestures.fingerSplayedGesture,
           //石頭
-          fpg.Gestures.fistGesture
+          fistGesture,
+          //fpg.Gestures.fistGesture,
+          //手指槍
+          fingerGunGesture
         ]);
         const gesture = await GE.estimate(keypointsAry, 4);
         if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
           // console.log(gesture.gestures);
 
           const confidence = gesture.gestures.map(
-            (prediction) => prediction.confidence
+            (prediction) => prediction.score
           );
           const maxConfidence = confidence.indexOf(
             Math.max.apply(null, confidence)
           );
           // console.log(gesture.gestures[maxConfidence].name);
-          console.log(gesture.gestures)
-          setEmoji(gesture.gestures[maxConfidence].name);
+
+          //uploading catch or not
+          const db = getDatabase()
+
+          if (gesture.gestures[maxConfidence] !== undefined) {
+            if(gesture.gestures[maxConfidence].name === 'fist'){
+              update(ref(db, `/playerMouse/${player}`), {
+                click: true
+              });
+            }else if(gesture.gestures[maxConfidence].name === 'finger_gun'){
+              update(ref(db, `/playerMouse/${player}`), {
+                shooting: true
+              });
+            }
+            else{
+              update(ref(db, `/playerMouse/${player}`), {
+                click: false,
+                shooting: false,
+                catch: 'none'
+              });
+            }
+            setEmoji(gesture.gestures[maxConfidence].name);
+          }
         }
       }
       ///////// NEW STUFF ADDED GESTURE HANDLING
@@ -161,7 +183,7 @@ function App() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 1050,
+            width: 1080,
             height: 720,
           }}
         />
@@ -176,7 +198,7 @@ function App() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 1050,
+            width: 1080,
             height: 720,
           }}
         />
@@ -205,4 +227,4 @@ function App() {
   );
 }
 
-export default App;
+export default HandPose;

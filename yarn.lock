@@ -5376,6 +5376,11 @@ fingerpose@0.0.2:
   resolved "https://registry.npmjs.org/fingerpose/-/fingerpose-0.0.2.tgz"
   integrity sha512-KNFly+Qc8B8fumdzoP6PhEY/UHodzjXmyo5+0ZsbNs0F+X2Mn4iiErcofnGONwwtcDuL2pvCC8bCwI9u1qPLDw==
 
+fingerpose@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/fingerpose/-/fingerpose-0.1.0.tgz#b39af26b2fd4f01c3ad7fadf4a74dd07e34b728c"
+  integrity sha512-OXIRuRTgukBOo4xUO+vPchzHftZOPxO7VRh4HDjTg5NGr4gSkiY+LQShjsKAzmpRiRdmTgDh0dNsGpWa1Jsx3Q==
+
 firebase@^9.14.0:
   version "9.14.0"
   resolved "https://registry.yarnpkg.com/firebase/-/firebase-9.14.0.tgz#407de4855092e607d3ee1fb222294ab2b45c4798"
