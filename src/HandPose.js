@@ -57,6 +57,15 @@ const HandPose = ({ player }) => {
       detect(detector);
     });
   };
+  
+  // navigator.mediaDevices.getUserMedia({
+  //   audio: false,
+  //   video: {
+  //     video: { width: 1280, height: 720 },
+  //   }
+  // }).then(function (mediaStream) {
+  //   console.log(mediaStream)
+  // })
 
   const detect = async (net) => {
     // Check data is available
@@ -66,20 +75,22 @@ const HandPose = ({ player }) => {
       webcamRef.current.video.readyState === 4
     ) {
       // Get Video Properties
-      const video = webcamRef.current.video;
-      const videoWidth = webcamRef.current.video.videoWidth;
-      const videoHeight = webcamRef.current.video.videoHeight;
+      const video = webcamRef.current.video
+      const videoWidth = webcamRef.current.video.videoWidth
+      const videoHeight = webcamRef.current.video.videoHeight
+
+
 
       // Set video width
-      webcamRef.current.video.width = videoWidth;
-      webcamRef.current.video.height = videoHeight;
+      webcamRef.current.video.width = videoWidth
+      webcamRef.current.video.height = videoHeight
 
       // Set canvas height and width
-      canvasRef.current.width = videoWidth;
-      canvasRef.current.height = videoHeight;
+      canvasRef.current.width = videoWidth
+      canvasRef.current.height = videoHeight
 
       // Make Detections
-      const hand = await net.estimateHands(video);
+      const hand = await net.estimateHands(video)
       if (hand.length > 0) {
         //使用keypoint3D
         const keypointsAry = Object.values(hand[0].keypoints3D)
