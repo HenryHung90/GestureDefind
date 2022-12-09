@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import HandPose from './HandPose'
 
-const router = () =>{
+const App = () =>{
     <Router>
         <Routes>
             <Route path="/playerone" element={<HandPose player={"one"}/>}></Route>
@@ -10,3 +10,4 @@ const router = () =>{
         </Routes>
     </Router>
 }
+export default App
