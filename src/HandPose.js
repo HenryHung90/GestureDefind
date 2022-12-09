@@ -183,8 +183,8 @@ const HandPose = ({ player }) => {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 1440,
-            height: 720,
+            width: '100vw',
+            height: '100vh',
           }}
         />
 
@@ -198,8 +198,8 @@ const HandPose = ({ player }) => {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 1080,
-            height: 720,
+            width:'80vw',
+            height: '100vh',
           }}
         />
         {/* NEW STUFF */}
