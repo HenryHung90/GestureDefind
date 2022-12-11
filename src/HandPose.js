@@ -57,15 +57,7 @@ const HandPose = ({ player }) => {
       detect(detector);
     });
   };
-  
-  // navigator.mediaDevices.getUserMedia({
-  //   audio: false,
-  //   video: {
-  //     video: { width: 1280, height: 720 },
-  //   }
-  // }).then(function (mediaStream) {
-  //   console.log(mediaStream)
-  // })
+
 
   const detect = async (net) => {
     // Check data is available
