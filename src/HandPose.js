@@ -3,8 +3,6 @@ import React, { useRef, useState, useEffect } from "react";
 ///////// NEW STUFF ADDED USE STATE
 
 // import logo from './logo.svg';
-import * as tf from "@tensorflow/tfjs";
-import * as handpose from "@tensorflow-models/handpose";
 import * as handPoseDetection from "@tensorflow-models/hand-pose-detection"
 import Webcam from "react-webcam";
 import "./App.css";
