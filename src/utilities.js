@@ -50,9 +50,11 @@ export const drawHand = (predictions, ctx, player) => {
 
       //uploading keypoints
       const db = getDatabase()
+
+
       update(ref(db, `/playerMouse/${player}`), {
-        MouseX: 600 - parseInt(prediction.keypoints[9].x),
-        MouseY: parseInt(prediction.keypoints[9].y) + 100,
+        MouseX: 700 - parseInt(prediction.keypoints[9].x),
+        MouseY: parseInt(prediction.keypoints[9].y),
       });
 
       // Loop through fingers
